@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.table.TableModel;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,6 +24,45 @@ public class KaliExcel extends javax.swing.JFrame {
      */
     public KaliExcel() {
         initComponents();
+        setLocationRelativeTo(null);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                    {"", "        1", "        2", "         3", "          4", null, null},
+                    {"1", "", null, null, null, null, null},
+                    {"2", null, null, null, null, null, null},
+                    {"3", null, null, null, null, null, null},
+                    {"4", null, null, null, null, null, null},
+                    {"5", null, null, null, null, null, null},
+                    {"6", null, null, null, null, null, null},
+                    {"7", null, null, null, null, null, null},
+                    {"8", null, null, null, null, null, null},
+                    {"9", null, null, null, null, null, null},
+                    {"10", null, null, null, null, null, null},
+                    {"11", null, null, null, null, null, null},
+                    {"12", null, null, null, null, null, null},
+                    {"13", null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null}
+                },
+                new String[]{
+                    "A", "B", "C", "D", "E", "F", "Title 7", "H", "I", "J", "K"
+                }
+        ));
+
+        
+        setTitle("Kali Excel");
+        
+        TableModel tableModel = jTable1.getModel();
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            for (int j = 0; j < tableModel.getColumnCount(); j++) {
+                System.out.print("\t"+tableModel.getValueAt(i, j));
+            }
+            System.out.println("");
+        }
     }
 
     /**
@@ -64,23 +105,10 @@ public class KaliExcel extends javax.swing.JFrame {
         jTable1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "        1", "        2", "         3", "          4"},
-                {"1", "", null, null, null},
-                {"2", null, null, null, null},
-                {"3", null, null, null, null},
-                {"4", null, null, null, null},
-                {"5", null, null, null, null},
-                {"6", null, null, null, null},
-                {"7", null, null, null, null},
-                {"8", null, null, null, null},
-                {"9", null, null, null, null},
-                {"10", null, null, null, null},
-                {"11", null, null, null, null},
-                {"12", null, null, null, null},
-                {"13", null, null, null, null}
+
             },
             new String [] {
-                "A", "B", "C", "D", "E"
+
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -90,6 +118,14 @@ public class KaliExcel extends javax.swing.JFrame {
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.setShowHorizontalLines(true);
         jTable1.setShowVerticalLines(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTable1MouseEntered(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jTable1.getAccessibleContext().setAccessibleParent(jTextField1);
@@ -119,16 +155,18 @@ public class KaliExcel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +178,7 @@ public class KaliExcel extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -154,6 +192,25 @@ public class KaliExcel extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseEntered
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int row = jTable1.rowAtPoint(evt.getPoint());
+        int column = jTable1.columnAtPoint(evt.getPoint());
+        
+        System.out.println("\nRow: "+row+". Col: "+column+".");
+        String texto;
+        if (jTable1.getModel().getValueAt(row, column)!=null) {
+            texto = jTable1.getModel().getValueAt(row, column).toString();
+        }else{
+            texto = "";
+        }
+        jTextField1.setText(texto);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
