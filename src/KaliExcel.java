@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Marco
  */
 public class KaliExcel extends javax.swing.JFrame {
-
+    int row = 0, col = 0;
     /**
      * Creates new form KaliExcel
      */
@@ -75,9 +76,9 @@ public class KaliExcel extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        input = new javax.swing.JTextField();
+        rechazar = new javax.swing.JButton();
+        aceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -92,15 +93,25 @@ public class KaliExcel extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel1.setText("f(x)");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                inputActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Rechazar");
+        rechazar.setText("Rechazar");
+        rechazar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechazarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Aceptar");
+        aceptar.setText("Aceptar");
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarActionPerformed(evt);
+            }
+        });
 
         jTable1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -126,9 +137,24 @@ public class KaliExcel extends javax.swing.JFrame {
                 jTable1MouseEntered(evt);
             }
         });
+        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTable1InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTable1KeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jTable1.getAccessibleContext().setAccessibleParent(jTextField1);
+        jTable1.getAccessibleContext().setAccessibleParent(input);
 
         menuArchivo.setText("Archivo");
         jMenuBar1.add(menuArchivo);
@@ -160,11 +186,11 @@ public class KaliExcel extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addComponent(input, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(aceptar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(rechazar))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -174,9 +200,9 @@ public class KaliExcel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rechazar)
+                    .addComponent(aceptar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addContainerGap())
@@ -189,9 +215,9 @@ public class KaliExcel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_inputActionPerformed
 
     private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
         // TODO add your handling code here:
@@ -199,18 +225,59 @@ public class KaliExcel extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        int row = jTable1.rowAtPoint(evt.getPoint());
-        int column = jTable1.columnAtPoint(evt.getPoint());
+        row = jTable1.rowAtPoint(evt.getPoint());
+        col = jTable1.columnAtPoint(evt.getPoint());
         
-        System.out.println("\nRow: "+row+". Col: "+column+".");
+        System.out.println("\nRow: "+row+". Col: "+col+".");
         String texto;
-        if (jTable1.getModel().getValueAt(row, column)!=null) {
-            texto = jTable1.getModel().getValueAt(row, column).toString();
+        if (jTable1.getModel().getValueAt(row, col)!=null) {
+            texto = jTable1.getModel().getValueAt(row, col).toString();
         }else{
             texto = "";
         }
-        jTextField1.setText(texto);
+        input.setText(texto);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1InputMethodTextChanged
+
+    private void jTable1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1KeyTyped
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+        char key = evt.getKeyChar();
+        System.out.println("key pressed: "+key);
+        
+        String texto =input.getText();
+        if (jTable1.getModel().getValueAt(row, col)!=null) {
+            texto = texto.concat(String.valueOf(key));
+        }else{
+            texto = "";
+        }
+        input.setText(texto);
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private void rechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechazarActionPerformed
+        // TODO add your handling code here:
+        input.setText("");
+        jTable1.getModel().setValueAt(null, row, col);
+        // Eliminar modelo y for, es solo para debug
+        TableModel tableModel = jTable1.getModel();
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            for (int j = 0; j < tableModel.getColumnCount(); j++) {
+                System.out.print("\t"+tableModel.getValueAt(i, j));
+            }
+            System.out.println("");
+        }
+    }//GEN-LAST:event_rechazarActionPerformed
+
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+        // TODO add your handling code here:
+        jTable1.getModel().setValueAt(input.getText(), row, col);
+    }//GEN-LAST:event_aceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,16 +320,16 @@ public class KaliExcel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton aceptar;
+    private javax.swing.JTextField input;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenu menuInsertar;
+    private javax.swing.JButton rechazar;
     // End of variables declaration//GEN-END:variables
 }
