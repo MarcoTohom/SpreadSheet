@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author Marco
  */
 public class SpreadSheet {
-
+    
     /**
      * @param args the command line arguments
      */
@@ -21,7 +21,7 @@ public class SpreadSheet {
         {5,6,7,8},
         {9,10,11,12},
         {13,14,15,16}};
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             // TODO code application logic here
             String txtInput = "=suma(3,5,10,20)";
@@ -30,7 +30,7 @@ public class SpreadSheet {
         } catch (IOException ex) {
             System.err.println("Error");
         }
-    }
+    }*/
     
     public static String function(String ecuation) throws IOException{
         if (ecuation.startsWith("=")){
