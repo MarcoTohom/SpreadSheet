@@ -106,12 +106,6 @@ public class KaliExcel extends javax.swing.JFrame {
         funcion.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         funcion.setText("f(x)");
 
-        input.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputActionPerformed(evt);
-            }
-        });
-
         aceptar.setText("Aceptar");
         aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,23 +138,10 @@ public class KaliExcel extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 hojaMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                hojaMouseEntered(evt);
-            }
-        });
-        hoja.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                hojaInputMethodTextChanged(evt);
-            }
         });
         hoja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 hojaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                hojaKeyTyped(evt);
             }
         });
         jScrollPane.setViewportView(hoja);
@@ -221,11 +202,6 @@ public class KaliExcel extends javax.swing.JFrame {
         menuInsertar.setText("Insertar");
 
         hojaCalculo.setText("Hoja de calculo");
-        hojaCalculo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hojaCalculoMouseClicked(evt);
-            }
-        });
         hojaCalculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hojaCalculoActionPerformed(evt);
@@ -256,11 +232,6 @@ public class KaliExcel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hojaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hojaKeyTyped
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_hojaKeyTyped
-
     private void hojaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hojaKeyPressed
         // TODO add your handling code here:
         char key = evt.getKeyChar();
@@ -274,14 +245,6 @@ public class KaliExcel extends javax.swing.JFrame {
         }
         input.setText(texto);
     }//GEN-LAST:event_hojaKeyPressed
-
-    private void hojaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_hojaInputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hojaInputMethodTextChanged
-
-    private void hojaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hojaMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hojaMouseEntered
 
     private void hojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hojaMouseClicked
         // TODO add your handling code here:
@@ -317,10 +280,6 @@ public class KaliExcel extends javax.swing.JFrame {
         hoja.getModel().setValueAt(input.getText(), row, col);
     }//GEN-LAST:event_aceptarActionPerformed
 
-    private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputActionPerformed
-
     private void hojaCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hojaCalculoActionPerformed
         JTable hoja = new JTable();
         JScrollPane scrollPane = new JScrollPane(hoja);
@@ -328,12 +287,6 @@ public class KaliExcel extends javax.swing.JFrame {
         panel.add(scrollPane);
         tabPanel.add(panel);
     }//GEN-LAST:event_hojaCalculoActionPerformed
-
-    private void hojaCalculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hojaCalculoMouseClicked
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_hojaCalculoMouseClicked
 
     /**
      * @param args the command line arguments
