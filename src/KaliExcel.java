@@ -1,20 +1,12 @@
 
-import java.awt.FlowLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JApplet;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.ListSelectionModel;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.TableModel;
-import javax.swing.table.DefaultTableModel;
 
 
 /*
@@ -38,10 +30,12 @@ public class KaliExcel extends javax.swing.JFrame {
    
         initComponents();
         setLocationRelativeTo(null);
-
+        
+        
+        tabPanel.add(new Controlador.NewClassControler().createJPanel());
         setTitle("KaliExcel");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        hoja.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
                     {"", "        1", "        2", "         3", "          4", null, null},
                     {"1", "", null, null, null, null, null},
@@ -66,12 +60,12 @@ public class KaliExcel extends javax.swing.JFrame {
                 },
                 new String[]{
                     "A", "B", "C", "D", "E", "F", "Title 7", "H", "I", "J", "K"
-                }
+    }
         ));
 
         setTitle("Kali Excel");
 
-        TableModel tableModel = jTable1.getModel();
+        TableModel tableModel = hoja.getModel();
         for (int i = 0; i < tableModel.getRowCount(); i++) {
             for (int j = 0; j < tableModel.getColumnCount(); j++) {
                 System.out.print("\t" + tableModel.getValueAt(i, j));
@@ -89,44 +83,28 @@ public class KaliExcel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        tabPanel = new javax.swing.JTabbedPane();
+        ventana = new javax.swing.JPanel();
+        funcion = new javax.swing.JLabel();
         input = new javax.swing.JTextField();
         aceptar = new javax.swing.JButton();
         rechazar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        input1 = new javax.swing.JTextField();
-        aceptar1 = new javax.swing.JButton();
-        rechazar1 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        input2 = new javax.swing.JTextField();
-        aceptar2 = new javax.swing.JButton();
-        rechazar2 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jScrollPane = new javax.swing.JScrollPane();
+        hoja = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        menu = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         menuInsertar = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        hojaCalculo = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
 
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+        tabPanel.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel1.setText("f(x)");
+        funcion.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        funcion.setText("f(x)");
 
         input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,8 +126,8 @@ public class KaliExcel extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        hoja.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        hoja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -157,48 +135,48 @@ public class KaliExcel extends javax.swing.JFrame {
 
             }
         ));
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable1.setCellSelectionEnabled(true);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(153, 153, 153));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        hoja.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        hoja.setCellSelectionEnabled(true);
+        hoja.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        hoja.setGridColor(new java.awt.Color(153, 153, 153));
+        hoja.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        hoja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                hojaMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTable1MouseEntered(evt);
+                hojaMouseEntered(evt);
             }
         });
-        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTable1InputMethodTextChanged(evt);
-            }
+        hoja.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                hojaInputMethodTextChanged(evt);
+            }
         });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        hoja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable1KeyPressed(evt);
+                hojaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTable1KeyTyped(evt);
+                hojaKeyTyped(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jTable1.getAccessibleContext().setAccessibleParent(input);
+        jScrollPane.setViewportView(hoja);
+        hoja.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        hoja.getAccessibleContext().setAccessibleParent(input);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout ventanaLayout = new javax.swing.GroupLayout(ventana);
+        ventana.setLayout(ventanaLayout);
+        ventanaLayout.setHorizontalGroup(
+            ventanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ventanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane)
+                    .addGroup(ventanaLayout.createSequentialGroup()
+                        .addComponent(funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -208,307 +186,124 @@ public class KaliExcel extends javax.swing.JFrame {
                         .addGap(0, 4, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        ventanaLayout.setVerticalGroup(
+            ventanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(ventanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(funcion)
                     .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aceptar)
                     .addComponent(rechazar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Hoja 1", jPanel1);
+        tabPanel.addTab("Hoja 1", ventana);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel2.setText("f(x)");
-
-        input1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                input1ActionPerformed(evt);
-            }
-        });
-
-        aceptar1.setText("Aceptar");
-        aceptar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptar1ActionPerformed(evt);
-            }
-        });
-
-        rechazar1.setText("Rechazar");
-        rechazar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechazar1ActionPerformed(evt);
-            }
-        });
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(input1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(aceptar1)
-                .addGap(18, 18, 18)
-                .addComponent(rechazar1)
-                .addGap(16, 16, 16))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4)
-                .addContainerGap())
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 751, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aceptar1)
-                    .addComponent(rechazar1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addGap(116, 116, 116))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 446, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("Hoja 2", jPanel2);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel3.setText("f(x)");
-
-        input2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                input2ActionPerformed(evt);
-            }
-        });
-
-        aceptar2.setText("Aceptar");
-        aceptar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptar2ActionPerformed(evt);
-            }
-        });
-
-        rechazar2.setText("Rechazar");
-        rechazar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechazar2ActionPerformed(evt);
-            }
-        });
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable3);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(input2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(aceptar2)
-                        .addGap(18, 18, 18)
-                        .addComponent(rechazar2)
-                        .addGap(0, 4, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(input2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aceptar2)
-                    .addComponent(rechazar2))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                .addGap(68, 68, 68))
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("Hoja 3", jPanel4);
+        tabPanel.addTab("New", jPanel1);
 
         menuArchivo.setText("Archivo");
-        jMenuBar1.add(menuArchivo);
+        menu.add(menuArchivo);
 
         menuInsertar.setText("Insertar");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menuInsertar.add(jMenuItem1);
-
-        jMenuItem2.setText("Hoja de calculo");
-        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+        hojaCalculo.setText("Hoja de calculo");
+        hojaCalculo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem2MouseClicked(evt);
+                hojaCalculoMouseClicked(evt);
             }
         });
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        hojaCalculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                hojaCalculoActionPerformed(evt);
             }
         });
-        menuInsertar.add(jMenuItem2);
+        menuInsertar.add(hojaCalculo);
 
-        jMenuBar1.add(menuInsertar);
+        menu.add(menuInsertar);
 
         menuAyuda.setText("Ayuda");
-        jMenuBar1.add(menuAyuda);
+        menu.add(menuAyuda);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tabPanel, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jTable1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyTyped
+    private void hojaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hojaKeyTyped
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jTable1KeyTyped
+    }//GEN-LAST:event_hojaKeyTyped
 
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+    private void hojaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hojaKeyPressed
         // TODO add your handling code here:
         char key = evt.getKeyChar();
         System.out.println("key pressed: " + key);
 
         String texto = input.getText();
-        if (jTable1.getModel().getValueAt(row, col) != null) {
+        if (hoja.getModel().getValueAt(row, col) != null) {
             texto = texto.concat(String.valueOf(key));
         } else {
             texto = "";
         }
         input.setText(texto);
-    }//GEN-LAST:event_jTable1KeyPressed
+    }//GEN-LAST:event_hojaKeyPressed
 
-    private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
+    private void hojaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_hojaInputMethodTextChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1InputMethodTextChanged
+    }//GEN-LAST:event_hojaInputMethodTextChanged
 
-    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+    private void hojaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hojaMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseEntered
+    }//GEN-LAST:event_hojaMouseEntered
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void hojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hojaMouseClicked
         // TODO add your handling code here:
-        row = jTable1.rowAtPoint(evt.getPoint());
-        col = jTable1.columnAtPoint(evt.getPoint());
+        row = hoja.rowAtPoint(evt.getPoint());
+        col = hoja.columnAtPoint(evt.getPoint());
 
         System.out.println("\nRow: " + row + ". Col: " + col + ".");
         String texto;
-        if (jTable1.getModel().getValueAt(row, col) != null) {
-            texto = jTable1.getModel().getValueAt(row, col).toString();
+        if (hoja.getModel().getValueAt(row, col) != null) {
+            texto = hoja.getModel().getValueAt(row, col).toString();
         } else {
             texto = "";
         }
         input.setText(texto);
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_hojaMouseClicked
 
     private void rechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechazarActionPerformed
         // TODO add your handling code here:
         input.setText("");
-        jTable1.getModel().setValueAt(null, row, col);
+        hoja.getModel().setValueAt(null, row, col);
         // Eliminar modelo y for, es solo para debug
-        TableModel tableModel = jTable1.getModel();
+        TableModel tableModel = hoja.getModel();
         for (int i = 0; i < tableModel.getRowCount(); i++) {
             for (int j = 0; j < tableModel.getColumnCount(); j++) {
                 System.out.print("\t" + tableModel.getValueAt(i, j));
@@ -519,50 +314,26 @@ public class KaliExcel extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         // TODO add your handling code here:
-        jTable1.getModel().setValueAt(input.getText(), row, col);
+        hoja.getModel().setValueAt(input.getText(), row, col);
     }//GEN-LAST:event_aceptarActionPerformed
 
     private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void hojaCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hojaCalculoActionPerformed
+        JTable hoja = new JTable();
+        JScrollPane scrollPane = new JScrollPane(hoja);
+        JPanel panel = new JPanel();
+        panel.add(scrollPane);
+        tabPanel.add(panel);
+    }//GEN-LAST:event_hojaCalculoActionPerformed
 
-    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
+    private void hojaCalculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hojaCalculoMouseClicked
         // TODO add your handling code here:
         
-        pestañas = new JTabbedPane();
         
-        pestañas.add(new JPanel());
-        
-        add(pestañas);
-    }//GEN-LAST:event_jMenuItem2MouseClicked
-
-    private void input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_input1ActionPerformed
-
-    private void aceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_aceptar1ActionPerformed
-
-    private void rechazar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechazar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rechazar1ActionPerformed
-
-    private void input2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_input2ActionPerformed
-
-    private void aceptar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_aceptar2ActionPerformed
-
-    private void rechazar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechazar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rechazar2ActionPerformed
+    }//GEN-LAST:event_hojaCalculoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -606,35 +377,18 @@ public class KaliExcel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptar;
-    private javax.swing.JButton aceptar1;
-    private javax.swing.JButton aceptar2;
+    private javax.swing.JLabel funcion;
+    private javax.swing.JTable hoja;
+    private javax.swing.JMenuItem hojaCalculo;
     private javax.swing.JTextField input;
-    private javax.swing.JTextField input1;
-    private javax.swing.JTextField input2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenu menuInsertar;
     private javax.swing.JButton rechazar;
-    private javax.swing.JButton rechazar1;
-    private javax.swing.JButton rechazar2;
+    private javax.swing.JTabbedPane tabPanel;
+    private javax.swing.JPanel ventana;
     // End of variables declaration//GEN-END:variables
 }
