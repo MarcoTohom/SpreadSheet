@@ -8,7 +8,7 @@ package Controlador;
  *
  * @author Marco
  */
-public class NewClassControler {
+public class FactorySheet {
     public static void main(String[] args) {
         System.out.println("test");
     }

@@ -1,3 +1,5 @@
+package Vista;
+
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,7 +22,7 @@ import javax.swing.table.TableModel;
  */
 public class KaliExcel extends javax.swing.JFrame {
 
-    int row = 0, col = 0;
+    int row = 0, col = 0, numeroHoja = 2;
     JTabbedPane pestañas;
     
     /**
@@ -32,7 +34,6 @@ public class KaliExcel extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         
-        tabPanel.add(new Controlador.NewClassControler().createJPanel());
         setTitle("KaliExcel");
 
         hoja.setModel(new javax.swing.table.DefaultTableModel(
@@ -91,7 +92,6 @@ public class KaliExcel extends javax.swing.JFrame {
         rechazar = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
         hoja = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
         menu = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         menuInsertar = new javax.swing.JMenu();
@@ -119,6 +119,9 @@ public class KaliExcel extends javax.swing.JFrame {
                 rechazarActionPerformed(evt);
             }
         });
+
+        jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         hoja.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         hoja.setModel(new javax.swing.table.DefaultTableModel(
@@ -183,19 +186,6 @@ public class KaliExcel extends javax.swing.JFrame {
 
         tabPanel.addTab("Hoja 1", ventana);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
-        );
-
-        tabPanel.addTab("New", jPanel1);
-
         menuArchivo.setText("Archivo");
         menu.add(menuArchivo);
 
@@ -231,6 +221,12 @@ public class KaliExcel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void hojaCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hojaCalculoActionPerformed
+        JPanel panel = new Modelo.KaliPanel();
+        tabPanel.add("Hoja "+numeroHoja, panel);
+        numeroHoja++;
+    }//GEN-LAST:event_hojaCalculoActionPerformed
 
     private void hojaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hojaKeyPressed
         // TODO add your handling code here:
@@ -280,14 +276,6 @@ public class KaliExcel extends javax.swing.JFrame {
         hoja.getModel().setValueAt(input.getText(), row, col);
     }//GEN-LAST:event_aceptarActionPerformed
 
-    private void hojaCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hojaCalculoActionPerformed
-        JTable hoja = new JTable();
-        JScrollPane scrollPane = new JScrollPane(hoja);
-        JPanel panel = new JPanel();
-        panel.add(scrollPane);
-        tabPanel.add(panel);
-    }//GEN-LAST:event_hojaCalculoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -314,6 +302,9 @@ public class KaliExcel extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(KaliExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -334,7 +325,6 @@ public class KaliExcel extends javax.swing.JFrame {
     private javax.swing.JTable hoja;
     private javax.swing.JMenuItem hojaCalculo;
     private javax.swing.JTextField input;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menuArchivo;
