@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -62,7 +63,7 @@ public class KaliExcel extends javax.swing.JFrame {
                     {null, null, null, null, null, null, null}
                 },
                 new String[]{
-                    "A", "B", "C", "D", "E", "F", "Title 7", "H", "I", "J", "K"
+                    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
                 }
         ));
 
@@ -101,6 +102,7 @@ public class KaliExcel extends javax.swing.JFrame {
         menuInsertar = new javax.swing.JMenu();
         hojaCalculo = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
@@ -223,6 +225,15 @@ public class KaliExcel extends javax.swing.JFrame {
         menu.add(menuInsertar);
 
         menuAyuda.setText("Ayuda");
+
+        jMenuItem1.setText("Informacion");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuAyuda.add(jMenuItem1);
+
         menu.add(menuAyuda);
 
         setJMenuBar(menu);
@@ -340,6 +351,16 @@ public class KaliExcel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_guardarActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+        JOptionPane.showMessageDialog(null, "Integrantes\n"
+                + "Vanii Alcantara\n"
+                + "Kevin Cruz\n"
+                + "Marco Lares\n"
+                + "Gerson Escobar (el patrón del mal)");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,6 +412,7 @@ public class KaliExcel extends javax.swing.JFrame {
     private javax.swing.JTable hoja;
     private javax.swing.JMenuItem hojaCalculo;
     private javax.swing.JTextField input;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menuArchivo;

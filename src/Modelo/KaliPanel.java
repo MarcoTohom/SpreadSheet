@@ -42,7 +42,7 @@ public class KaliPanel extends javax.swing.JPanel {
                     {null, null, null, null, null, null, null}
                 },
                 new String[]{
-                    "A", "B", "C", "D", "E", "F", "Title 7", "H", "I", "J", "K"
+                    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
             }
         ));
 
@@ -147,7 +147,7 @@ public class KaliPanel extends javax.swing.JPanel {
                     .addComponent(aceptar)
                     .addComponent(rechazar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
