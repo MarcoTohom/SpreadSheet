@@ -1,6 +1,9 @@
 package Vista;
 
-
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -24,16 +27,15 @@ public class KaliExcel extends javax.swing.JFrame {
 
     int row = 0, col = 0, numeroHoja = 2;
     JTabbedPane pestañas;
-    
+
     /**
      * Creates new form KaliExcel
      */
     public KaliExcel() {
-   
+
         initComponents();
         setLocationRelativeTo(null);
-        
-        
+
         setTitle("KaliExcel");
 
         hoja.setModel(new javax.swing.table.DefaultTableModel(
@@ -61,7 +63,7 @@ public class KaliExcel extends javax.swing.JFrame {
                 },
                 new String[]{
                     "A", "B", "C", "D", "E", "F", "Title 7", "H", "I", "J", "K"
-    }
+                }
         ));
 
         setTitle("Kali Excel");
@@ -94,6 +96,8 @@ public class KaliExcel extends javax.swing.JFrame {
         hoja = new javax.swing.JTable();
         menu = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
+        abrir = new javax.swing.JMenuItem();
+        guardar = new javax.swing.JMenuItem();
         menuInsertar = new javax.swing.JMenu();
         hojaCalculo = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
@@ -187,6 +191,23 @@ public class KaliExcel extends javax.swing.JFrame {
         tabPanel.addTab("Hoja 1", ventana);
 
         menuArchivo.setText("Archivo");
+
+        abrir.setText("Abrir");
+        abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrirActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(abrir);
+
+        guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(guardar);
+
         menu.add(menuArchivo);
 
         menuInsertar.setText("Insertar");
@@ -224,7 +245,7 @@ public class KaliExcel extends javax.swing.JFrame {
 
     private void hojaCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hojaCalculoActionPerformed
         JPanel panel = new Modelo.KaliPanel();
-        tabPanel.add("Hoja "+numeroHoja, panel);
+        tabPanel.add("Hoja " + numeroHoja, panel);
         numeroHoja++;
     }//GEN-LAST:event_hojaCalculoActionPerformed
 
@@ -276,6 +297,49 @@ public class KaliExcel extends javax.swing.JFrame {
         hoja.getModel().setValueAt(input.getText(), row, col);
     }//GEN-LAST:event_aceptarActionPerformed
 
+    private void abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_abrirActionPerformed
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int returnVal = fileChooser.showSaveDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                File file = fileChooser.getSelectedFile();
+                System.out.println(file.getAbsolutePath());
+                PrintWriter os = new PrintWriter(file);
+                os.println("");
+                for (int col = 0; col < hoja.getColumnCount(); col++) {
+                    os.print(hoja.getColumnName(col) + "\t");
+                }
+
+                os.println("");
+                os.println("");
+
+                for (int iRow = 0; iRow < hoja.getRowCount(); iRow++) {
+                    for (int iColumn = 0; iColumn < hoja.getColumnCount(); iColumn++) {
+                        String texto = "";
+                        if (hoja.getValueAt(iRow, iColumn) != null) {
+                            texto = hoja.getValueAt(iRow, iColumn).toString();
+                        } else {
+                            texto = "null";
+                        }
+                        os.print(texto + "\t");
+
+                    }
+                    os.println("");
+                }
+                os.close();
+                System.out.println("Done!");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_guardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -320,8 +384,10 @@ public class KaliExcel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem abrir;
     private javax.swing.JButton aceptar;
     private javax.swing.JLabel funcion;
+    private javax.swing.JMenuItem guardar;
     private javax.swing.JTable hoja;
     private javax.swing.JMenuItem hojaCalculo;
     private javax.swing.JTextField input;
